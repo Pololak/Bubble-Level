@@ -5,7 +5,7 @@ using namespace geode::prelude;
 #include <Geode/modify/MenuLayer.hpp>
 #include <Geode/ui/Popup.hpp>
 
-class BubbleLevelPopup : public Popup<>, CCAccelerometerDelegate {
+class BubbleLevelPopup : public Popup<>, public CCAccelerometerDelegate {
 protected:
     CCSprite* m_bubble = nullptr;
 
