@@ -1,7 +1,8 @@
 {
 	"geode": "4.4.0",
 	"gd": {
-		"android": "2.2074"
+		"android": "2.2074",
+		"ios": "2.2074"
 	},
 	"id": "pololak.bubble-level",
 	"name": "Bubble Level",
