@@ -38,7 +38,7 @@ protected:
         setTouchEnabled(true);
         setKeypadEnabled(true);
         setAccelerometerEnabled(true);
-        setAccelerometerInterval(1.);
+        setAccelerometerInterval(30.);
 
         return true;
     }
