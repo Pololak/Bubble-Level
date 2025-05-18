@@ -27,27 +27,36 @@ protected:
         addChild(layer);
 
         auto bg = extension::CCScale9Sprite::create("GJ_square01.png");
-        bg->setContentSize({300.f, 200.f});
+        bg->setContentSize({200.f, 100.f});
         bg->setPosition(winSize / 2.f);
         layer->addChild(bg, -2);
+
+        auto closeBtn = CCMenuItemSpriteExtra::create(CCSprite::createWithSpriteFrameName("GJ_closeBtn_001.png"), this, menu_selector(BubbleLevelPopup::onClose));
+        closeBtn->setPosition({winSize.width / 2.f - 95.f, winSize.height / 2.f + 45.f});
+        menu->addChild(closeBtn);
+
+        auto label = CCLabelBMFont::create("Bubble Level", "goldFont.fnt");
+        label->setScale(.75f);
+        label->setPosition({winSize.width / 2.f, winSize.height / 2.f + 40.f});
+        layer->addChild(label);
 
         auto bbgOutline = extension::CCScale9Sprite::create("square02b_small.png");
         bbgOutline->setScale(.55f);
         bbgOutline->setColor({0,0,0});
-        bbgOutline->setContentSize({186.f, 42.f});
+        bbgOutline->setContentSize({224.f, 42.f});
         bbgOutline->setPosition(winSize / 2.f);
         layer->addChild(bbgOutline);
 
         auto bbg = extension::CCScale9Sprite::create("square02b_small.png");
         bbg->setScale(.5f);
         bbg->setColor({130,220,130});
-        bbg->setContentSize({200.f, 40.f});
+        bbg->setContentSize({240.f, 40.f});
         bbg->setPosition(winSize / 2.f);
         layer->addChild(bbg);
 
         m_bubble = CCSprite::createWithSpriteFrameName("gj_navDotBtn_on_001.png");
         m_bubble->setPosition(winSize / 2.f);
-        m_bubble->setColor({0,200,0});
+        m_bubble->setColor({0,255,120});
         layer->addChild(m_bubble);
 
         auto leftLine = CCSprite::createWithSpriteFrameName("persp_outline_02_001.png");
@@ -71,8 +80,18 @@ protected:
         return true;
     }
 
-    virtual void didAccelerate(CCAcceleration* pAccelerationValue) {
+    virtual void didAccelerate(CCAcceleration* pAccelerationValue) override {
         m_bubble->setPositionX((CCDirector::sharedDirector()->getWinSize().width / 2.f) + pAccelerationValue->x * 50);
+    }
+
+    void keyBackClicked() override {
+        setTouchEnabled(false);
+        setAccelerometerEnabled(false);
+        removeFromParentAndCleanup(true);
+    }
+
+    void onClose(CCObject*) {
+        keyBackClicked();
     }
 
 public:
