@@ -30,14 +30,17 @@ protected:
         bg->setContentSize({200.f, 100.f});
         bg->setPosition(winSize / 2.f);
         layer->addChild(bg, -2);
+        menu->setPosition(winSize / 2.f);
 
-        auto closeBtn = CCMenuItemSpriteExtra::create(CCSprite::createWithSpriteFrameName("GJ_closeBtn_001.png"), this, menu_selector(BubbleLevelPopup::onClose));
+        auto closeSpr = CCSprite::createWithSpriteFrameName("GJ_closeBtn_001.png");
+        closeSpr->setScale(.6f);
+        auto closeBtn = CCMenuItemSpriteExtra::create(closeSpr, this, menu_selector(BubbleLevelPopup::onClose));
         closeBtn->setPosition({winSize.width / 2.f - 95.f, winSize.height / 2.f + 45.f});
         menu->addChild(closeBtn);
 
         auto label = CCLabelBMFont::create("Bubble Level", "goldFont.fnt");
         label->setScale(.75f);
-        label->setPosition({winSize.width / 2.f, winSize.height / 2.f + 40.f});
+        label->setPosition({winSize.width / 2.f, winSize.height / 2.f + 35.f});
         layer->addChild(label);
 
         auto bbgOutline = extension::CCScale9Sprite::create("square02b_small.png");
