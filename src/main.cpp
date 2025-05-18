@@ -5,19 +5,41 @@ using namespace geode::prelude;
 #include <Geode/modify/MenuLayer.hpp>
 #include <Geode/ui/Popup.hpp>
 
-class BubbleLevelPopup : public Popup<>, public CCAccelerometerDelegate {
+class BubbleLevelPopup : public FLAlertLayer, CCAccelerometerDelegate {
 protected:
     CCSprite* m_bubble = nullptr;
 
-    bool setup() override {
+    bool init() override {
+        if (!initWithColor({0,0,0,75})) return false;
+
+        auto director = CCDirector::sharedDirector();
+        auto winSize = director->getWinSize();
+        geode::cocos::handleTouchPriority(this);
+        registerWithTouchDispatcher();
         setID("bubble-level-popup"_spr);
-        setTitle("Bubble Level");
+
+        auto layer = CCLayer::create();
+        auto menu = CCMenu::create();
+        m_mainLayer = layer;
+        m_buttonMenu = menu;
+
+        layer->addChild(menu);
+        addChild(layer);
+
+        auto bg = extension::CCScale9Sprite::create("GJ_square01.png");
+        bg->setContentSize({300.f, 200.f});
+        bg->setPosition(winSize / 2.f);
+        layer->addChild(bg, -2);
 
         m_bubble = CCSprite::createWithSpriteFrameName("gj_navDotBtn_on_001.png");
-        addChild(m_bubble);
+        layer->addChild(m_bubble);
 
+        setTouchEnabled(true);
+        setKeypadEnabled(true);
         setAccelerometerEnabled(true);
         setAccelerometerInterval(1.);
+
+        return true;
     }
 
     virtual void didAccelerate(CCAcceleration* pAccelerationValue) {
@@ -27,7 +49,7 @@ protected:
 public:
     static BubbleLevelPopup* create() {
         auto ret = new BubbleLevelPopup();
-        if (ret->initAnchored(240.f, 160.f)) {
+        if (ret->init()) {
             ret->autorelease();
             return ret;
         }
