@@ -33,7 +33,7 @@ protected:
         menu->setPosition(winSize / 2.f);
 
         auto closeSpr = CCSprite::createWithSpriteFrameName("GJ_closeBtn_001.png");
-        closeSpr->setScale(.6f);
+        closeSpr->setScale(.8f);
         auto closeBtn = CCMenuItemSpriteExtra::create(closeSpr, this, menu_selector(BubbleLevelPopup::onClose));
         closeBtn->setPosition({-95.f, 45.f});
         menu->addChild(closeBtn);
