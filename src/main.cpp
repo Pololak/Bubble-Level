@@ -35,7 +35,7 @@ protected:
         auto closeSpr = CCSprite::createWithSpriteFrameName("GJ_closeBtn_001.png");
         closeSpr->setScale(.6f);
         auto closeBtn = CCMenuItemSpriteExtra::create(closeSpr, this, menu_selector(BubbleLevelPopup::onClose));
-        closeBtn->setPosition({winSize.width / 2.f - 95.f, winSize.height / 2.f + 45.f});
+        closeBtn->setPosition({-95.f, 45.f});
         menu->addChild(closeBtn);
 
         auto label = CCLabelBMFont::create("Bubble Level", "goldFont.fnt");
