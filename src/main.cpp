@@ -113,7 +113,8 @@ class $modify(PolzMenuLayer, MenuLayer) {
     bool init() {
         if (!MenuLayer::init()) return false;
 
-        auto levelButton = CCMenuItemSpriteExtra::create(CCSprite::create("GJ_button_01.png"), this, menu_selector(PolzMenuLayer::openBubbleLevel));
+        auto levelSprite = BasedButtonSprite::create(CCSprite::create("bubble_level.png"_spr), BaseType::Circle, 1, 0);
+        auto levelButton = CCMenuItemSpriteExtra::create(levelSprite, this, menu_selector(PolzMenuLayer::openBubbleLevel));
         auto menu = this->getChildByID("bottom-menu");
         menu->addChild(levelButton);
         levelButton->setID("level-button"_spr);

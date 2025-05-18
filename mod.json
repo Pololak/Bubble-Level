@@ -8,5 +8,10 @@
 	"name": "Bubble Level",
 	"version": "v1.0.0",
 	"developer": "Pololak",
-	"description": "Lmao"
+	"description": "Lmao",
+	"resources": {
+		"sprites": [
+			"resources/*.png"
+		]
+	}
 }
