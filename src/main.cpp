@@ -32,6 +32,7 @@ protected:
         layer->addChild(bg, -2);
 
         m_bubble = CCSprite::createWithSpriteFrameName("gj_navDotBtn_on_001.png");
+        m_bubble->setPosition(winSize / 2.f);
         layer->addChild(m_bubble);
 
         setTouchEnabled(true);
